@@ -157,9 +157,15 @@ module Icalendar
     end
 
     def escape_chars(value)
-      v = value.gsub("\\", "\\\\").gsub("\r\n", "\n").gsub("\r", "\n").gsub("\n", "\\n").gsub(",", "\\,").gsub(";", "\\;")
+      v = value
+        .gsub("\\", "\\\\")
+        .gsub("\r\n", "\n")
+        .gsub("\r", "\n")
+        .gsub("\n", "\\n")
+        .gsub(",", "\\,")
+        .gsub(";", "\\;")
+        .gsub('"', '\"')
       return v
-       # return value
     end
 
     def add_sliced_text(add_to,escaped)
@@ -182,7 +188,7 @@ module Icalendar
           s << "="
           s << val.map do |pval|
             if pval.respond_to? :to_ical
-              param = pval.to_ical
+              param = escape_chars(pval.to_ical)
               param = %|"#{param}"| unless param =~ %r{\A#{Parser::QSTR}\z|\A#{Parser::PTEXT}\z}
               param
             end
