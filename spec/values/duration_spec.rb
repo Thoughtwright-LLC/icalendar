@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Values::Duration do
+describe GFIcalendar::Values::Duration do
 
   subject { described_class.new value }
 

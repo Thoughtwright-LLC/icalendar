@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Parser do
+describe GFIcalendar::Parser do
   subject { described_class.new source, false }
   let(:source) { File.read File.join(File.dirname(__FILE__), 'fixtures', fn) }
 
@@ -11,7 +11,7 @@ describe Icalendar::Parser do
       it 'returns an array of calendars' do
         expect(subject.parse).to be_instance_of Array
         expect(subject.parse.count).to eq 1
-        expect(subject.parse[0]).to be_instance_of Icalendar::Calendar
+        expect(subject.parse[0]).to be_instance_of GFIcalendar::Calendar
       end
 
       it 'properly splits multi-valued lines' do
@@ -40,7 +40,7 @@ describe Icalendar::Parser do
     it 'returns an array of calendars' do
       expect(subject.parse).to be_instance_of Array
       expect(subject.parse.count).to eq 1
-      expect(subject.parse[0]).to be_instance_of Icalendar::Calendar
+      expect(subject.parse[0]).to be_instance_of GFIcalendar::Calendar
     end
 
     it 'properly splits multi-valued lines' do
@@ -59,7 +59,7 @@ describe Icalendar::Parser do
 
     it 'falls back to date type for dtstart' do
       event = subject.parse.first.events.first
-      expect(event.dtstart).to be_kind_of Icalendar::Values::Date
+      expect(event.dtstart).to be_kind_of GFIcalendar::Values::Date
     end
   end
 end

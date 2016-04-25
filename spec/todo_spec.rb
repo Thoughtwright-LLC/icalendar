@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Todo do
+describe GFIcalendar::Todo do
 
   describe '#dtstart' do
     it 'is not normally required' do

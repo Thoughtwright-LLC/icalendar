@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Calendar do
+describe GFIcalendar::Calendar do
 
   context 'values' do
     let(:property) { 'my-value' }
@@ -51,11 +51,11 @@ describe Icalendar::Calendar do
 
     %w(event todo journal freebusy timezone).each do |component|
       it "##{component} adds a new component" do
-        expect(subject.send "#{component}").to be_a_kind_of Icalendar::Component
+        expect(subject.send "#{component}").to be_a_kind_of GFIcalendar::Component
       end
 
       it "##{component} passes a component to a block to build parts" do
-        expect { |b| subject.send("#{component}", &b) }.to yield_with_args Icalendar::Component
+        expect { |b| subject.send("#{component}", &b) }.to yield_with_args GFIcalendar::Component
       end
 
       it "##{component} can be passed in" do
@@ -108,8 +108,8 @@ describe Icalendar::Calendar do
     end
 
     it 'can be added with add_x_ for custom components' do
-      expect(subject.add_x_custom_component).to be_a_kind_of Icalendar::Component
-      expect { |b| subject.add_x_custom_component(&b) }.to yield_with_args Icalendar::Component
+      expect(subject.add_x_custom_component).to be_a_kind_of GFIcalendar::Component
+      expect { |b| subject.add_x_custom_component(&b) }.to yield_with_args GFIcalendar::Component
       expect(subject.add_x_custom_component ical_component).to eq ical_component
     end
   end

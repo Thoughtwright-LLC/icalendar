@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::DowncasedHash do
+describe GFIcalendar::DowncasedHash do
 
   subject { described_class.new base }
   let(:base) { {'hello' => 'world'} }
@@ -42,11 +42,11 @@ describe Icalendar::DowncasedHash do
 
   describe 'DowncasedHash()' do
     it 'returns self when passed an DowncasedHash' do
-      expect(Icalendar::DowncasedHash(subject)).to be subject
+      expect(GFIcalendar::DowncasedHash(subject)).to be subject
     end
 
     it 'wraps a hash in an downcased hash' do
-      expect(Icalendar::DowncasedHash(base)).to be_kind_of Icalendar::DowncasedHash
+      expect(GFIcalendar::DowncasedHash(base)).to be_kind_of GFIcalendar::DowncasedHash
     end
   end
 end
