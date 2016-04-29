@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Values::UtcOffset do
+describe IcalendarV2::Values::UtcOffset do
 
   subject { described_class.new value }
 

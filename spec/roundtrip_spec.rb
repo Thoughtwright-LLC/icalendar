@@ -1,19 +1,19 @@
 require 'spec_helper'
 
-describe Icalendar do
+describe IcalendarV2 do
 
   describe 'single event round trip' do
     let(:source) { File.read File.join(File.dirname(__FILE__), 'fixtures', 'single_event.ics') }
 
     it 'will generate the same file as is parsed' do
-      expect(Icalendar.parse(source, true).to_ical).to eq source
+      expect(IcalendarV2.parse(source, true).to_ical).to eq source
     end
 
     it 'array properties can be assigned to a new event' do
-      event = Icalendar::Event.new
-      parsed = Icalendar.parse source, true
+      event = IcalendarV2::Event.new
+      parsed = IcalendarV2.parse source, true
       event.rdate = parsed.events.first.rdate
-      expect(event.rdate.first).to be_kind_of Icalendar::Values::Array
+      expect(event.rdate.first).to be_kind_of IcalendarV2::Values::Array
       expect(event.rdate.first.ical_params).to eq 'tzid' => ['US-Mountain']
     end
   end
@@ -21,13 +21,13 @@ describe Icalendar do
   describe 'timezone round trip' do
     let(:source) { File.read File.join(File.dirname(__FILE__), 'fixtures', 'timezone.ics') }
     it 'will generate the same file as it parsed' do
-      expect(Icalendar.parse(source, true).to_ical).to eq source
+      expect(IcalendarV2.parse(source, true).to_ical).to eq source
     end
   end
 
   describe 'non-default values' do
     let(:source) { File.read File.join(File.dirname(__FILE__), 'fixtures', 'nondefault_values.ics') }
-    subject { Icalendar.parse(source, true).events.first }
+    subject { IcalendarV2.parse(source, true).events.first }
 
     it 'will set dtstart to Date' do
       expect(subject.dtstart.value).to eq ::Date.new(2006, 12, 15)
@@ -48,7 +48,7 @@ describe Icalendar do
 
   describe 'sorting daily events' do
     let(:source) { File.read File.join(File.dirname(__FILE__), 'fixtures', 'two_day_events.ics') }
-    subject { Icalendar.parse(source, true).events }
+    subject { IcalendarV2.parse(source, true).events }
 
     it 'sorts day events' do
       events = subject.sort_by(&:dtstart)
@@ -60,7 +60,7 @@ describe Icalendar do
 
   describe 'sorting time events' do
     let(:source) { File.read File.join(File.dirname(__FILE__), 'fixtures', 'two_time_events.ics') }
-    subject { Icalendar.parse(source, true).events }
+    subject { IcalendarV2.parse(source, true).events }
 
     it 'sorts time events by start time' do
       events = subject.sort_by(&:dtstart)
@@ -82,7 +82,7 @@ describe Icalendar do
 
   describe 'sorting date / time events' do
     let(:source) { File.read File.join(File.dirname(__FILE__), 'fixtures', 'two_date_time_events.ics') }
-    subject { Icalendar.parse(source, true).events }
+    subject { IcalendarV2.parse(source, true).events }
 
     it 'sorts time events' do
       events = subject.sort_by(&:dtstart)
@@ -94,11 +94,11 @@ describe Icalendar do
 
   describe 'non-standard values' do
     if defined? File::NULL
-      before(:all) { Icalendar.logger = Icalendar::Logger.new File::NULL }
-      after(:all) { Icalendar.logger = nil }
+      before(:all) { IcalendarV2.logger = IcalendarV2::Logger.new File::NULL }
+      after(:all) { IcalendarV2.logger = nil }
     end
     let(:source) { File.read File.join(File.dirname(__FILE__), 'fixtures', 'nonstandard.ics') }
-    subject { Icalendar::Parser.new(source, strict) }
+    subject { IcalendarV2::Parser.new(source, strict) }
 
     context 'strict parser' do
       let(:strict) { true }

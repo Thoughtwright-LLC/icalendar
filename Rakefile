@@ -12,7 +12,7 @@ task :console do
   require 'irb'
   require 'irb/completion'
   $:.unshift File.join(File.dirname(__FILE__), 'lib')
-  require 'icalendar'
+  require 'icalendar_v2'
   ARGV.clear
   IRB.start
 end

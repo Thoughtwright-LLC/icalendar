@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Event do
+describe IcalendarV2::Event do
 
   describe '#dtstart' do
     context 'no parent' do
@@ -15,7 +15,7 @@ describe Icalendar::Event do
     end
 
     context 'with parent' do
-      before(:each) { subject.parent = Icalendar::Calendar.new }
+      before(:each) { subject.parent = IcalendarV2::Calendar.new }
 
       it 'is invalid without method set' do
         expect(subject).to_not be_valid
@@ -87,7 +87,7 @@ describe Icalendar::Event do
       describe '#rdate' do
         it 'does not convert a DateTime delegating for an ActiveSupport::TimeWithZone into an Array' do
           timestamp = '20140130T230000Z'
-          expected = [Icalendar::Values::DateTime.new(timestamp)]
+          expected = [IcalendarV2::Values::DateTime.new(timestamp)]
 
           subject.rdate = timestamp
           expect(subject.rdate).to eq(expected)
@@ -139,7 +139,7 @@ describe Icalendar::Event do
 
     context 'complex organizer' do
       before :each do
-        subject.organizer = Icalendar::Values::CalAddress.new("mailto:jsmith@example.com", cn: 'John Smith')
+        subject.organizer = IcalendarV2::Values::CalAddress.new("mailto:jsmith@example.com", cn: 'John Smith')
       end
 
       it { expect(subject.to_ical).to include 'ORGANIZER;CN=John Smith:mailto:jsmith@example.com' }

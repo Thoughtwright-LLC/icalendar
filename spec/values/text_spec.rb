@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Values::Text do
+describe IcalendarV2::Values::Text do
 
   subject { described_class.new value }
   let(:unescaped) { "This \\ that, semi; colons\r\nAnother line: \"why not?\"" }

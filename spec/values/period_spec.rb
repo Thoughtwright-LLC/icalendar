@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'ostruct'
 
-describe Icalendar::Values::Period do
+describe IcalendarV2::Values::Period do
 
   subject { described_class.new value }
 

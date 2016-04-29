@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Freebusy do
+describe IcalendarV2::Freebusy do
 
   # currently no behavior in Journal not tested other places
 

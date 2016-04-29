@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Timezone do
+describe IcalendarV2::Timezone do
 
   describe "valid?" do
     subject { described_class.new.tap { |t| t.tzid = 'Eastern' } }

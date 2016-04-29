@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Values::DateTime do
+describe IcalendarV2::Values::DateTime do
 
   subject { described_class.new value, params }
   let(:value) { '20140209T194355Z' }

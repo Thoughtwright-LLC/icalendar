@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Values::Recur do
+describe IcalendarV2::Values::Recur do
 
   subject { described_class.new value }
   let(:value) { 'FREQ=DAILY' }
@@ -27,7 +27,7 @@ describe Icalendar::Values::Recur do
 
       specify { expect(subject.frequency).to eq 'YEARLY' }
       it 'can be added to another event by sending' do
-        event = Icalendar::Event.new
+        event = IcalendarV2::Event.new
         event.send "rrule=", subject
         rule = event.send "rrule"
         expect(rule.first.frequency).to eq 'YEARLY'

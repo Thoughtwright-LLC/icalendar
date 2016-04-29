@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Icalendar::Alarm do
+describe IcalendarV2::Alarm do
 
   # currently no behavior in Alarm not tested other places
   describe '#valid?' do
     subject do
       described_class.new.tap do |a|
         a.action = 'AUDIO'
-        a.trigger = Icalendar::Values::DateTime.new(Time.now.utc)
+        a.trigger = IcalendarV2::Values::DateTime.new(Time.now.utc)
       end
     end
     context 'neither duration or repeat is set' do
@@ -83,22 +83,22 @@ describe Icalendar::Alarm do
       subject do
         described_class.new.tap do |a|
           a.action = 'AUDIO'
-          a.trigger = Icalendar::Values::DateTime.new(Time.now.utc)
+          a.trigger = IcalendarV2::Values::DateTime.new(Time.now.utc)
         end
       end
       specify { expect(subject.valid? true).to be true }
       context 'with parent' do
         before(:each) { subject.parent = parent }
         context 'event' do
-          let(:parent) { Icalendar::Event.new }
+          let(:parent) { IcalendarV2::Event.new }
           specify { expect(subject.valid? true).to be true }
         end
         context 'todo' do
-          let(:parent) { Icalendar::Todo.new }
+          let(:parent) { IcalendarV2::Todo.new }
           specify { expect(subject.valid? true).to be true }
         end
         context 'journal' do
-          let(:parent) { Icalendar::Journal.new }
+          let(:parent) { IcalendarV2::Journal.new }
           specify { expect(subject.valid? true).to be false }
         end
       end

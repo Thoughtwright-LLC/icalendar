@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../lib/icalendar/tzinfo'
+require_relative '../lib/icalendar_v2/tzinfo'
 
 describe 'TZInfo::Timezone' do
 

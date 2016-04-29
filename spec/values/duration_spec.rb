@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Icalendar::Values::Duration do
+describe IcalendarV2::Values::Duration do
 
   subject { described_class.new value }
 
